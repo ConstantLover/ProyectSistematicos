@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistematicos Pro · Herramientas para Abogados 2026</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f7fa;
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f2b3d 0%, #1a4a6f 100%);
+            color: white;
+            padding: 16px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "⚖️";
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-size: 120px;
+            opacity: 0.05;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,215,120,0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #ffd778;
+        }
+
+        .logo h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .logo h1 span {
+            color: #ffd778;
+        }
+
+        .logo p {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        /* Navegación principal dentro del header */
+        .main-nav {
+            display: flex;
+            gap: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-btn {
+            padding: 10px 28px;
+            background: transparent;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            font-size: 14px;
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        .nav-btn.active {
+            background: #ffd778;
+            color: #1a4a6f;
+            box-shadow: 0 4px 15px rgba(255,215,120,0.3);
+        }
+
+        .nav-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .year-badge {
+            background: #ffd77820;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid #ffd77840;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1a4a6f;
+        }
+
+        /* Grid de módulos */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd778, #1a4a6f);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+
+        .module-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .module-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .module-progress {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+
+        .module-progress-bar {
+            height: 100%;
+            background: #ffd778;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .module-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 12px;
+        }
+
+        /* Submódulos */
+        .submodules-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #e2e8f0;
+        }
+
+        .submodule-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .submodule-item:hover {
+            background: #f1f5f9;
+            transform: translateX(5px);
+        }
+
+        .submodule-item.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .submodule-info {
+            flex: 1;
+        }
+
+        .submodule-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .submodule-desc {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .submodule-status {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .status-completed {
+            background: #22c55e20;
+            color: #22c55e;
+        }
+
+        .status-in-progress {
+            background: #ffd77820;
+            color: #ffd778;
+        }
+
+        .status-locked {
+            background: #e2e8f0;
+            color: #94a3b8;
+        }
+
+        /* BIBLIOTECA - ESTILOS MEJORADOS */
+        .search-box {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #ffd778;
+            box-shadow: 0 0 0 3px rgba(255,215,120,0.2);
+        }
+
+        .code-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: #1a4a6f;
+            color: white;
+        }
+
+        .codes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .code-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 20px;
+            border-left: 4px solid #ffd778;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .code-card:hover {
+            transform: translateX(6px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .code-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #1a4a6f;
+        }
+
+        .code-decreto {
+            font-size: 12px;
+            color: #ffd778;
+            margin-bottom: 12px;
+        }
+
+        .code-stats {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 12px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .articulos-lista {
+            margin-top: 12px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .code-card.expanded .articulos-lista {
+            max-height: 500px;
+        }
+
+        .articulo-item {
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 13px;
+        }
+
+        .articulo-item:last-child {
+            border-bottom: none;
+        }
+
+        .articulo-num {
+            font-weight: 700;
+            color: #1a4a6f;
+        }
+
+        .expand-icon {
+            float: right;
+            color: #ffd778;
+            cursor: pointer;
+        }
+
+        /* Calculadora */
+        .calculator-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .calculator-input {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .calculator-input label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .calculator-input input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .calculator-input input:focus {
+            outline: none;
+            border-color: #ffd778;
+        }
+
+        .calc-result {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .result-total {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a4a6f;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid #ffd778;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Modal Quiz */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 40px;
+            max-width: 650px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            background: #f8fafc;
+            border-color: #ffd778;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a4a6f, #0f2b3d);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #475569;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .result-badge {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: none;
+            color: #1a4a6f;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back:hover {
+            color: #ffd778;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #64748b;
+            font-size: 12px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+            background: white;
+        }
+
+        .stats-badge {
+            background: #1a4a6f10;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-content">
+        <div class="logo-area">
+            <div class="logo-icon">
+                <i class="fas fa-scale-balanced"></i>
+            </div>
+            <div class="logo">
+                <h1>Sistem<span>aticos</span></h1>
+                <p>Herramientas para Abogados · Guatemala 2026</p>
+            </div>
+        </div>
+        
+        <div class="main-nav">
+            <button class="nav-btn active" onclick="switchMainTab('modulos')">
+                <i class="fas fa-graduation-cap"></i> Módulos
+            </button>
+            <button class="nav-btn" onclick="switchMainTab('biblioteca')">
+                <i class="fas fa-book"></i> Biblioteca
+            </button>
+            <button class="nav-btn" onclick="switchMainTab('calculadora')">
+                <i class="fas fa-calculator"></i> Calculadora
+            </button>
+        </div>
+        
+        <div class="year-badge">
+            <i class="fas fa-calendar-alt"></i> Edición 2026
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <!-- SECCIÓN MÓDULOS -->
+    <div id="modulosSection">
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-graduation-cap"></i>
+                Módulos de Especialización 2026
+            </div>
+            <p style="color: #64748b; margin-bottom: 20px;">📖 Cada módulo contiene submódulos con aprendizaje progresivo. Completa cada uno para desbloquear el siguiente.</p>
+            <div class="modules-grid" id="modulesGrid"></div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN SUBMÓDULOS -->
+    <div id="submodulosSection" class="hidden">
+        <div class="card">
+            <button class="btn-back" onclick="volverAModulos()">
+                <i class="fas fa-arrow-left"></i> Volver a Módulos
+            </button>
+            <div class="card-title" id="submoduloTitle">
+                <i class="fas fa-layer-group"></i>
+                <span id="moduloNombreActual">Módulo</span>
+            </div>
+            <div id="submodulosList"></div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN BIBLIOTECA - COMPLETAMENTE FUNCIONAL -->
+    <div id="bibliotecaSection" class="hidden">
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-landmark"></i>
+                Biblioteca Legal de Guatemala
+            </div>
+            <p style="color: #64748b; margin-bottom: 20px;">📚 Consulta códigos y artículos completos de la legislación guatemalteca. Busca por código, artículo o palabra clave.</p>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="🔍 Buscar por código, artículo o palabra clave... (ej: Art. 216, hurto, despido, Código Penal)" onkeyup="buscarEnBiblioteca()">
+                <button class="btn-primary" onclick="buscarEnBiblioteca()" style="padding: 12px 28px;">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </div>
+            
+            <div class="code-filters" id="filtrosBiblioteca"></div>
+            
+            <div id="resultadosBiblioteca" class="codes-grid">
+                <!-- Resultados dinámicos -->
+            </div>
+            
+            <div id="sinResultados" class="hidden" style="text-align: center; padding: 40px; color: #64748b;">
+                <i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px;"></i>
+                <p>No se encontraron resultados para tu búsqueda</p>
+                <p style="font-size: 12px;">Intenta con: "Art. 216", "despido", "hurto", "Código Penal"</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-fire"></i>
+                Artículos Más Consultados 2026
+            </div>
+            <div id="articulosPopulares" style="display: flex; flex-wrap: wrap; gap: 12px;"></div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN CALCULADORA -->
+    <div id="calculadoraSection" class="hidden">
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-calculator"></i>
+                Calculadora de Liquidación Laboral 2026
+            </div>
+            <p style="color: #64748b; margin-bottom: 24px;">💰 Calcula lo que corresponde por despido injustificado según el Código de Trabajo de Guatemala.</p>
+            
+            <div class="calculator-row">
+                <div class="calculator-input">
+                    <label>💰 Salario mensual (Q.)</label>
+                    <input type="number" id="salario" placeholder="Ej: 3,500" value="3500">
+                </div>
+                <div class="calculator-input">
+                    <label>📅 Años trabajados</label>
+                    <input type="number" id="anios" placeholder="Ej: 3" value="3" step="0.5">
+                </div>
+                <div class="calculator-input">
+                    <label>📆 Meses trabajados en el año actual</label>
+                    <input type="number" id="mesesActual" placeholder="Ej: 6" value="6">
+                </div>
+            </div>
+            
+            <button class="btn-primary" onclick="calcularLiquidacion()" style="width: 100%;">
+                <i class="fas fa-chart-line"></i> Calcular Liquidación
+            </button>
+            
+            <div id="resultadoLiquidacion" class="calc-result hidden">
+                <h4 style="margin-bottom: 16px;">📊 Resultado de Liquidación</h4>
+                <div class="result-row"><span>Indemnización (1 mes por año, máx 10):</span><strong id="indemnizacion">Q.0</strong></div>
+                <div class="result-row"><span>Aguinaldo proporcional (Art. 101 CT):</span><strong id="aguinaldo">Q.0</strong></div>
+                <div class="result-row"><span>Bono 14 proporcional (Decreto 42-92):</span><strong id="bono14">Q.0</strong></div>
+                <div class="result-row"><span>Vacaciones proporcionales (Art. 130 CT):</span><strong id="vacaciones">Q.0</strong></div>
+                <div class="result-total"><span>TOTAL LIQUIDACIÓN:</span><strong id="totalLiquidacion">Q.0</strong></div>
+                <p style="font-size: 12px; color: #64748b; margin-top: 16px;"><i class="fas fa-info-circle"></i> Basado en Código de Trabajo Decreto 1441</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title"><i class="fas fa-file-alt"></i> Base Legal para Abogados</div>
+            <p style="margin-bottom: 12px;"><strong>📌 Indemnización:</strong> Art. 82 CT - 1 mes de salario por cada año trabajado (máximo 10 meses)</p>
+            <p style="margin-bottom: 12px;"><strong>📌 Aguinaldo:</strong> Art. 101 CT - 100% del salario, 50% mayo, 50% diciembre</p>
+            <p style="margin-bottom: 12px;"><strong>📌 Bono 14:</strong> Decreto 42-92 - 100% del salario, pago en julio</p>
+            <p><strong>📌 Vacaciones:</strong> Art. 130 CT - 15 días hábiles por año trabajado</p>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><i class="fas fa-scale-balanced"></i> Sistematicos · Herramientas para Abogados Guatemala · Edición 2026</p>
+    <p style="margin-top: 8px;">Módulos con aprendizaje progresivo · Biblioteca legal con 6 códigos y 80+ artículos</p>
+</footer>
+
+<!-- Modal Quiz -->
+<div id="quizModal" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header"><h3 id="quizProgress">Quiz</h3><button class="close-modal" onclick="cerrarQuiz()">&times;</button></div>
+        <div class="modal-body" id="quizQuestion"></div>
+        <div class="modal-footer" id="quizFooter"></div>
+    </div>
+</div>
+
+<!-- Modal Artículo -->
+<div id="articuloModal" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header"><h3 id="articuloModalTitle">Artículo</h3><button class="close-modal" onclick="cerrarArticuloModal()">&times;</button></div>
+        <div class="modal-body" id="articuloModalBody"></div>
+        <div class="modal-footer"><button class="btn-primary" onclick="cerrarArticuloModal()">Cerrar</button></div>
+    </div>
+</div>
+
+<script>
+    // ============================================
+    // BIBLIOTECA LEGAL COMPLETA - 6 CÓDIGOS CON ARTÍCULOS
+    // ============================================
+    
+    const CODIGOS_COMPLETOS = [
+        {
+            id: "penal",
+            nombre: "Código Penal",
+            decreto: "Decreto 17-73",
+            descripcion: "Regula los delitos y las penas en Guatemala",
+            articulos: [
+                { num: "123", texto: "Homicidio simple. El que matare a otro será sancionado con prisión de 10 a 20 años." },
+                { num: "124", texto: "Homicidio calificado. Prisión de 20 a 30 años si concurren circunstancias especiales." },
+                { num: "127", texto: "Femicidio. Prisión de 25 a 50 años. Quien da muerte a una mujer por razones de género." },
+                { num: "147", texto: "Violación. Prisión de 8 a 20 años para quien tenga acceso carnal sin consentimiento." },
+                { num: "151", texto: "Violencia intrafamiliar. Prisión de 1 a 4 años." },
+                { num: "162", texto: "Maltrato a menores. Prisión de 1 a 5 años." },
+                { num: "216", texto: "Hurto. Prisión de 1 a 6 años. Quien toma cosa ajena sin violencia." },
+                { num: "226", texto: "Robo. Prisión de 4 a 12 años. Con violencia o intimidación." },
+                { num: "246", texto: "Estafa. Prisión de 1 a 6 años. Quien defraude mediante engaño." },
+                { num: "263", texto: "Usurpación. Prisión de 1 a 4 años." }
+            ]
+        },
+        {
+            id: "procesalPenal",
+            nombre: "Código Procesal Penal",
+            decreto: "Decreto 51-92",
+            descripcion: "Regula el procedimiento en materia penal",
+            articulos: [
+                { num: "1", texto: "Principios del proceso penal. Legalidad, oralidad, publicidad, contradicción." },
+                { num: "25", texto: "Criterio de oportunidad. El MP puede no ejercer acción penal en casos de insignificancia." },
+                { num: "107", texto: "Detención. Plazo máximo de 24 horas para poner a disposición del juez." },
+                { num: "254", texto: "Prisión preventiva. Procede cuando hay peligro de fuga o destrucción de pruebas." },
+                { num: "297", texto: "Denuncia. Obligación de denunciar para funcionarios públicos." },
+                { num: "313", texto: "Declaración del imputado. Derecho a no declarar contra sí mismo." }
+            ]
+        },
+        {
+            id: "trabajo",
+            nombre: "Código de Trabajo",
+            decreto: "Decreto 1441",
+            descripcion: "Regula las relaciones laborales en Guatemala",
+            articulos: [
+                { num: "77", texto: "Causas de despido justificado. Robo, falta de honradez, indisciplina grave." },
+                { num: "78", texto: "Despido injustificado. Procede indemnización." },
+                { num: "82", texto: "Indemnización. Un mes de salario por cada año trabajado, máximo 10 meses." },
+                { num: "101", texto: "Aguinaldo. 100% del salario, 50% en mayo, 50% en enero." },
+                { num: "130", texto: "Vacaciones. 15 días hábiles por año." },
+                { num: "286", texto: "Plazo para demandar. 30 días después del despido." }
+            ]
+        },
+        {
+            id: "civil",
+            nombre: "Código Civil",
+            decreto: "Decreto Ley 106",
+            descripcion: "Regula las relaciones civiles, familiares y patrimoniales",
+            articulos: [
+                { num: "78", texto: "Matrimonio. Unión legal entre hombre y mujer." },
+                { num: "110", texto: "Divorcio. Causales: infidelidad, maltrato, abandono, separación." },
+                { num: "141", texto: "Patria potestad. Ejercida por ambos padres." },
+                { num: "155", texto: "Alimentos. Obligación entre cónyuges, padres e hijos." },
+                { num: "456", texto: "Contrato. Acuerdo de voluntades que crea obligaciones." },
+                { num: "485", texto: "Prescripción. 5 años para acciones personales." },
+                { num: "901", texto: "Compraventa. Obligación de transferir propiedad a cambio de precio." }
+            ]
+        },
+        {
+            id: "comercio",
+            nombre: "Código de Comercio",
+            decreto: "Decreto 2-70",
+            descripcion: "Regula las actividades mercantiles",
+            articulos: [
+                { num: "1", texto: "Comerciantes. Personas que ejercen actos de comercio." },
+                { num: "10", texto: "Registro Mercantil. Inscripción obligatoria." },
+                { num: "30", texto: "Sociedad Anónima. Capital dividido en acciones." },
+                { num: "63", texto: "Pagaré. Promesa incondicional de pago." },
+                { num: "71", texto: "Cheque. Orden de pago contra banco." }
+            ]
+        },
+        {
+            id: "constitucion",
+            nombre: "Constitución Política",
+            decreto: "CPRG 1985/1993",
+            descripcion: "Norma suprema de Guatemala",
+            articulos: [
+                { num: "12", texto: "Derecho de defensa. Nadie puede ser condenado sin ser oído." },
+                { num: "14", texto: "Presunción de inocencia. Toda persona es inocente hasta que se demuestre lo contrario." },
+                { num: "44", texto: "Derechos inherentes. Los derechos humanos son irrenunciables." },
+                { num: "101", texto: "Derecho al trabajo. Derecho humano fundamental." },
+                { num: "203", texto: "Independencia judicial. Los jueces son independientes." },
+                { num: "263", texto: "Exhibición personal. Habeas corpus contra detenciones ilegales." },
+                { num: "265", texto: "Amparo. Protección contra actos de autoridad." }
+            ]
+        }
+    ];
+    
+    let filtroBibliotecaActual = "todos";
+    
+    function renderFiltrosBiblioteca() {
+        const container = document.getElementById('filtrosBiblioteca');
+        container.innerHTML = `
+            <button class="filter-btn ${filtroBibliotecaActual === 'todos' ? 'active' : ''}" onclick="filtrarBiblioteca('todos')">📚 Todos</button>
+            ${CODIGOS_COMPLETOS.map(code => `
+                <button class="filter-btn ${filtroBibliotecaActual === code.id ? 'active' : ''}" onclick="filtrarBiblioteca('${code.id}')">📖 ${code.nombre}</button>
+            `).join('')}
+        `;
+    }
+    
+    function filtrarBiblioteca(codeId) {
+        filtroBibliotecaActual = codeId;
+        renderFiltrosBiblioteca();
+        buscarEnBiblioteca();
+    }
+    
+    function buscarEnBiblioteca() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+        let resultados = CODIGOS_COMPLETOS;
+        
+        // Aplicar filtro por código
+        if (filtroBibliotecaActual !== 'todos') {
+            resultados = resultados.filter(code => code.id === filtroBibliotecaActual);
+        }
+        
+        // Aplicar búsqueda
+        if (searchTerm !== "") {
+            resultados = resultados.filter(code => {
+                // Buscar en nombre del código
+                if (code.nombre.toLowerCase().includes(searchTerm)) return true;
+                if (code.decreto.toLowerCase().includes(searchTerm)) return true;
+                // Buscar en artículos
+                return code.articulos.some(art => 
+                    art.num.includes(searchTerm) || 
+                    art.texto.toLowerCase().includes(searchTerm)
+                );
+            });
+        }
+        
+        const container = document.getElementById('resultadosBiblioteca');
+        const sinResultados = document.getElementById('sinResultados');
+        
+        if (resultados.length === 0) {
+            container.innerHTML = '';
+            sinResultados.classList.remove('hidden');
+            return;
+        }
+        
+        sinResultados.classList.add('hidden');
+        
+        container.innerHTML = resultados.map(code => `
+            <div class="code-card" onclick="toggleArticulos(this, '${code.id}')">
+                <div class="code-name">${code.nombre}</div>
+                <div class="code-decreto">${code.decreto}</div>
+                <div class="code-preview" style="font-size: 13px; color: #475569;">${code.descripcion}</div>
+                <div class="code-stats">
+                    <span><i class="fas fa-book"></i> ${code.articulos.length} artículos</span>
+                    <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="articulos-lista" id="articulos-${code.id}">
+                    ${code.articulos.map(art => `
+                        <div class="articulo-item" onclick="event.stopPropagation(); verArticuloCompleto('${code.id}', '${art.num}')">
+                            <span class="articulo-num">Art. ${art.num}</span> - ${art.texto.substring(0, 100)}${art.texto.length > 100 ? '...' : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function toggleArticulos(element, codeId) {
+        element.classList.toggle('expanded');
+        const icon = element.querySelector('.expand-icon i');
+        if (icon) {
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+    }
+    
+    function verArticuloCompleto(codeId, numArt) {
+        const code = CODIGOS_COMPLETOS.find(c => c.id === codeId);
+        const articulo = code.articulos.find(a => a.num === numArt);
+        
+        document.getElementById('articuloModalTitle').innerHTML = `${code.nombre} - Artículo ${articulo.num}`;
+        document.getElementById('articuloModalBody').innerHTML = `
+            <div style="background: #f8fafc; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
+                <strong>Texto oficial:</strong>
+                <p style="margin-top: 12px; line-height: 1.6;">${articulo.texto}</p>
+            </div>
+            <div style="background: #ffd77820; padding: 16px; border-radius: 16px;">
+                <strong><i class="fas fa-comment-dots"></i> Para el abogado:</strong>
+                <p style="margin-top: 8px;">Este artículo es fundamental en casos relacionados con ${articulo.texto.split('.')[0].toLowerCase()}. 
+                Consulte la jurisprudencia de la Corte Suprema de Justicia para su aplicación práctica.</p>
+            </div>
+            <p style="margin-top: 16px; font-size: 12px; color: #64748b;">
+                <i class="fas fa-gavel"></i> Fuente: ${code.decreto} - Legislación vigente de Guatemala
+            </p>
+        `;
+        document.getElementById('articuloModal').classList.add('open');
+    }
+    
+    function cerrarArticuloModal() {
+        document.getElementById('articuloModal').classList.remove('open');
+    }
+    
+    function renderArticulosPopulares() {
+        const populares = [
+            { code: "penal", num: "216", texto: "Hurto" },
+            { code: "penal", num: "226", texto: "Robo" },
+            { code: "trabajo", num: "82", texto: "Indemnización por despido" },
+            { code: "trabajo", num: "286", texto: "Plazo para demandar" },
+            { code: "civil", num: "110", texto: "Divorcio" },
+            { code: "constitucion", num: "263", texto: "Hábeas Corpus" }
+        ];
+        
+        const container = document.getElementById('articulosPopulares');
+        container.innerHTML = populares.map(art => `
+            <span class="filter-btn" onclick="buscarArticuloRapido('${art.code}', '${art.num}')" style="background: #1a4a6f; color: white; cursor: pointer;">
+                <i class="fas fa-gavel"></i> ${art.code === "penal" ? "CP" : art.code === "trabajo" ? "CT" : art.code === "civil" ? "CC" : "CPRG"} Art. ${art.num}: ${art.texto}
+            </span>
+        `).join('');
+    }
+    
+    function buscarArticuloRapido(codeId, numArt) {
+        const code = CODIGOS_COMPLETOS.find(c => c.id === codeId);
+        const articulo = code.articulos.find(a => a.num === numArt);
+        
+        document.getElementById('articuloModalTitle').innerHTML = `${code.nombre} - Artículo ${articulo.num}`;
+        document.getElementById('articuloModalBody').innerHTML = `
+            <div style="background: #f8fafc; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
+                <strong>Texto oficial:</strong>
+                <p style="margin-top: 12px;">${articulo.texto}</p>
+            </div>
+            <div style="background: #ffd77820; padding: 16px; border-radius: 16px;">
+                <strong><i class="fas fa-comment-dots"></i> Aplicación práctica:</strong>
+                <p style="margin-top: 8px;">Artículo fundamental para casos de ${articulo.texto.split('.')[0].toLowerCase()}.</p>
+            </div>
+        `;
+        document.getElementById('articuloModal').classList.add('open');
+    }
+    
+    // ============================================
+    // MÓDULOS CON SUBMÓDULOS (MANTENIDOS)
+    // ============================================
+    
+    const MODULOS_COMPLETOS = [
+        { id: 1, nombre: "Introducción al Derecho", icono: "fa-landmark", descripcion: "Fundamentos del sistema jurídico guatemalteco", submódulos: [
+            { id: 1, nombre: "¿Qué es el Derecho?", descripcion: "Conceptos básicos", preguntas: 3, completado: false, puntaje: 0 },
+            { id: 2, nombre: "Fuentes del Derecho", descripcion: "Ley, costumbre, jurisprudencia", preguntas: 2, completado: false, puntaje: 0 },
+            { id: 3, nombre: "Jerarquía Normativa", descripcion: "Constitución vs leyes", preguntas: 2, completado: false, puntaje: 0 },
+            { id: 4, nombre: "Organismo Judicial", descripcion: "Estructura y funciones", preguntas: 2, completado: false, puntaje: 0 }
+        ] },
+        { id: 2, nombre: "Derecho Constitucional", icono: "fa-scroll", descripcion: "Constitución y derechos fundamentales", submódulos: [
+            { id: 1, nombre: "Constitución Política", descripcion: "Estructura y principios", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 2, nombre: "Derechos Fundamentales", descripcion: "Arts. 1-139 CPRG", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 3, nombre: "Garantías Constitucionales", descripcion: "Amparo y Hábeas Corpus", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 4, nombre: "Corte de Constitucionalidad", descripcion: "Funciones", preguntas: 1, completado: false, puntaje: 0 }
+        ] },
+        { id: 3, nombre: "Derecho Penal", icono: "fa-handcuffs", descripcion: "Delitos y penas", submódulos: [
+            { id: 1, nombre: "Principios del CP", descripcion: "Legalidad, tipicidad", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 2, nombre: "Delitos contra la Vida", descripcion: "Homicidio, femicidio", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 3, nombre: "Delitos contra el Patrimonio", descripcion: "Hurto, robo, estafa", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 4, nombre: "Delitos contra la Libertad", descripcion: "Secuestro, amenazas", preguntas: 1, completado: false, puntaje: 0 }
+        ] },
+        { id: 4, nombre: "Derecho Laboral", icono: "fa-briefcase", descripcion: "Relaciones laborales", submódulos: [
+            { id: 1, nombre: "Contrato de Trabajo", descripcion: "Elementos y tipos", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 2, nombre: "Jornada y Salario", descripcion: "Horarios y prestaciones", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 3, nombre: "Despido y Liquidación", descripcion: "Causales e indemnización", preguntas: 1, completado: false, puntaje: 0 },
+            { id: 4, nombre: "Prestaciones", descripcion: "Aguinaldo, bono 14", preguntas: 1, completado: false, puntaje: 0 }
+        ] }
+    ];
+    
+    const PREGUNTAS_POR_SUBMODULO = {
+        "1-1": [{ texto: "¿Cuál es la definición de Derecho?", opciones: ["Conjunto de normas coercibles", "Conjunto de reglas morales", "Voluntad del soberano", "Costumbres sociales"], correcta: 0, explicacion: "El Derecho es el conjunto de normas jurídicas que regulan la conducta humana." }],
+        "1-2": [{ texto: "¿Cuál es la principal fuente del Derecho en Guatemala?", opciones: ["La ley", "La costumbre", "La jurisprudencia", "La doctrina"], correcta: 0, explicacion: "La ley es la fuente primaria en nuestro sistema jurídico." }],
+        "1-3": [{ texto: "¿Cuál es la norma suprema de Guatemala?", opciones: ["Constitución Política", "Código Civil", "Código Penal", "Tratados internacionales"], correcta: 0, explicacion: "La CPRG es la norma suprema." }],
+        "1-4": [{ texto: "¿Qué órgano ejerce la función jurisdiccional?", opciones: ["Organismo Judicial", "Ministerio Público", "Organismo Legislativo", "Organismo Ejecutivo"], correcta: 0, explicacion: "El OJ es el encargado de impartir justicia." }],
+        "2-1": [{ texto: "¿En qué año entró en vigencia la actual Constitución?", opciones: ["1985", "1986", "1993", "1996"], correcta: 1, explicacion: "Entró en vigor el 14 de enero de 1986." }],
+        "2-2": [{ texto: "¿Qué artículo establece el derecho de defensa?", opciones: ["Art. 12", "Art. 14", "Art. 28", "Art. 44"], correcta: 0, explicacion: "Art. 12 CPRG." }],
+        "2-3": [{ texto: "¿Qué protege el Hábeas Corpus?", opciones: ["Libertad física", "Libertad de expresión", "Propiedad privada", "Derecho al trabajo"], correcta: 0, explicacion: "Protege contra detenciones ilegales." }],
+        "2-4": [{ texto: "¿Cuántos magistrados integran la Corte de Constitucionalidad?", opciones: ["5", "7", "9", "13"], correcta: 0, explicacion: "5 magistrados." }],
+        "3-1": [{ texto: "¿Qué principio establece que no hay delito sin ley previa?", opciones: ["Legalidad", "Tipicidad", "Culpabilidad", "Proporcionalidad"], correcta: 0, explicacion: "Nullum crimen, nulla poena sine lege." }],
+        "3-2": [{ texto: "¿Qué artículo tipifica el homicidio simple?", opciones: ["Art. 123", "Art. 124", "Art. 127", "Art. 132"], correcta: 0, explicacion: "Art. 123 CP." }],
+        "3-3": [{ texto: "¿Qué artículo tipifica el hurto?", opciones: ["Art. 216", "Art. 226", "Art. 246", "Art. 263"], correcta: 0, explicacion: "Art. 216 CP." }],
+        "3-4": [{ texto: "¿Qué delito es el secuestro?", opciones: ["Art. 206", "Art. 216", "Art. 226", "Art. 246"], correcta: 0, explicacion: "Art. 206 CP." }],
+        "4-1": [{ texto: "¿Qué elementos debe tener un contrato de trabajo?", opciones: ["Prestación personal, subordinación, salario", "Escritura pública, registro", "Testigos, notario", "Título, plazo"], correcta: 0, explicacion: "Art. 18 CT." }],
+        "4-2": [{ texto: "¿Cuál es la jornada máxima diurna?", opciones: ["8 horas", "6 horas", "7 horas", "9 horas"], correcta: 0, explicacion: "8 horas diarias, 48 semanales." }],
+        "4-3": [{ texto: "¿Cuánto tiempo tiene para demandar por despido?", opciones: ["15 días", "30 días", "60 días", "90 días"], correcta: 1, explicacion: "Art. 286 CT: 30 días hábiles." }],
+        "4-4": [{ texto: "¿Cuándo se paga el aguinaldo?", opciones: ["Mayo y diciembre", "Junio y julio", "Marzo y septiembre", "Enero y julio"], correcta: 0, explicacion: "50% mayo, 50% diciembre." }]
+    };
+    
+    let progreso = JSON.parse(localStorage.getItem('sistematicos_progreso_2026')) || null;
+    
+    function inicializarProgreso() {
+        if (!progreso) {
+            progreso = { submódulos: {} };
+            MODULOS_COMPLETOS.forEach(mod => {
+                mod.submódulos.forEach(sub => {
+                    progreso.submódulos[`${mod.id}-${sub.id}`] = { completado: false, puntaje: 0 };
+                });
+            });
+        }
+        MODULOS_COMPLETOS.forEach(mod => {
+            mod.submódulos.forEach(sub => {
+                const key = `${mod.id}-${sub.id}`;
+                if (progreso.submódulos[key]) {
+                    sub.completado = progreso.submódulos[key].completado;
+                    sub.puntaje = progreso.submódulos[key].puntaje;
+                }
+            });
+        });
+    }
+    
+    function guardarProgreso() {
+        MODULOS_COMPLETOS.forEach(mod => {
+            mod.submódulos.forEach(sub => {
+                const key = `${mod.id}-${sub.id}`;
+                progreso.submódulos[key] = { completado: sub.completado, puntaje: sub.puntaje };
+            });
+        });
+        localStorage.setItem('sistematicos_progreso_2026', JSON.stringify(progreso));
+        renderModulos();
+    }
+    
+    function calcularProgresoModulo(mod) {
+        const total = mod.submódulos.length;
+        const completados = mod.submódulos.filter(s => s.completado).length;
+        return { completados, total, porcentaje: Math.round((completados / total) * 100) };
+    }
+    
+    function renderModulos() {
+        const container = document.getElementById('modulesGrid');
+        if (!container) return;
+        container.innerHTML = MODULOS_COMPLETOS.map(mod => {
+            const prog = calcularProgresoModulo(mod);
+            return `
+                <div class="module-card" onclick="abrirModulo(${mod.id})">
+                    <div class="module-icon"><i class="fas ${mod.icono}"></i></div>
+                    <div class="module-title">${mod.nombre}</div>
+                    <div style="font-size: 13px; color: #64748b; margin: 8px 0;">${mod.descripcion}</div>
+                    <div class="module-progress"><div class="module-progress-bar" style="width: ${prog.porcentaje}%"></div></div>
+                    <div class="module-stats"><span>📚 ${mod.submódulos.length} submódulos</span><span>✅ ${prog.completados}/${prog.total}</span></div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    let moduloActual = null;
+    
+    function abrirModulo(modId) {
+        moduloActual = MODULOS_COMPLETOS.find(m => m.id === modId);
+        document.getElementById('moduloNombreActual').innerHTML = moduloActual.nombre;
+        renderSubmodulos();
+        document.getElementById('modulosSection').classList.add('hidden');
+        document.getElementById('submodulosSection').classList.remove('hidden');
+    }
+    
+    function renderSubmodulos() {
+        const container = document.getElementById('submodulosList');
+        let bloqueado = false;
+        container.innerHTML = moduloActual.submódulos.map((sub, idx) => {
+            const estaBloqueado = !bloqueado && idx > 0 && !moduloActual.submódulos[idx-1].completado;
+            if (estaBloqueado) bloqueado = true;
+            const statusClass = sub.completado ? 'status-completed' : (estaBloqueado ? 'status-locked' : 'status-in-progress');
+            const statusText = sub.completado ? '✓ Completado' : (estaBloqueado ? '🔒 Bloqueado' : '📖 Disponible');
+            return `
+                <div class="submodule-item ${estaBloqueado && !sub.completado ? 'locked' : ''}" 
+                     onclick="${!estaBloqueado || sub.completado ? `abrirSubmodulo(${moduloActual.id}, ${sub.id})` : ''}">
+                    <div class="submodule-info">
+                        <div class="submodule-name">${sub.nombre}</div>
+                        <div class="submodule-desc">${sub.descripcion} · ${sub.preguntas} preguntas</div>
+                        ${sub.completado ? `<div style="font-size: 11px; color: #22c55e;">Puntaje: ${sub.puntaje}%</div>` : ''}
+                    </div>
+                    <div class="submodule-status ${statusClass}">${statusText}</div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    let submoduloActual = null, preguntasActuales = [], respuestas = [], preguntaIdx = 0;
+    
+    function abrirSubmodulo(modId, subId) {
+        const sub = moduloActual.submódulos.find(s => s.id === subId);
+        if (!sub) return;
+        if (!sub.completado && subId > 1 && !moduloActual.submódulos[subId-2].completado) {
+            alert("🔒 Completa el submódulo anterior primero.");
+            return;
+        }
+        const key = `${modId}-${subId}`;
+        preguntasActuales = PREGUNTAS_POR_SUBMODULO[key] || [{ texto: "Pregunta de ejemplo", opciones: ["A", "B", "C", "D"], correcta: 0, explicacion: "Explicación" }];
+        submoduloActual = { modId, subId, nombre: sub.nombre, preguntas: preguntasActuales };
+        respuestas = new Array(preguntasActuales.length).fill(null);
+        preguntaIdx = 0;
+        mostrarPreguntaQuiz();
+    }
+    
+    function mostrarPreguntaQuiz() {
+        const p = submoduloActual.preguntas[preguntaIdx];
+        document.getElementById('quizQuestion').innerHTML = `
+            <p style="font-size: 18px; font-weight: 500; margin-bottom: 24px;">${p.texto}</p>
+            <div id="quizOptions">
+                ${p.opciones.map((op, idx) => `
+                    <div class="option" onclick="seleccionarRespuestaQuiz(${idx})">
+                        <input type="radio" name="respuesta" value="${idx}" ${respuestas[preguntaIdx] === idx ? 'checked' : ''}>
+                        <span>${String.fromCharCode(65+idx)}. ${op}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('quizProgress').innerHTML = `${submoduloActual.nombre} · Pregunta ${preguntaIdx+1} de ${submoduloActual.preguntas.length}`;
+        document.getElementById('quizFooter').innerHTML = `
+            <button class="btn-secondary" onclick="cerrarQuiz()">Cancelar</button>
+            <button class="btn-primary" onclick="siguientePreguntaQuiz()">${preguntaIdx === submoduloActual.preguntas.length-1 ? 'Finalizar' : 'Siguiente'}</button>
+        `;
+        document.getElementById('quizModal').classList.add('open');
+    }
+    
+    function seleccionarRespuestaQuiz(idx) {
+        respuestas[preguntaIdx] = idx;
+        const radios = document.querySelectorAll('#quizOptions input');
+        radios.forEach((r, i) => { if (i === idx) r.checked = true; });
+    }
+    
+    function siguientePreguntaQuiz() {
+        if (respuestas[preguntaIdx] === null) { alert("Selecciona una respuesta"); return; }
+        if (preguntaIdx < submoduloActual.preguntas.length - 1) { preguntaIdx++; mostrarPreguntaQuiz(); }
+        else { finalizarQuizSubmodulo(); }
+    }
+    
+    function finalizarQuizSubmodulo() {
+        let correctas = 0;
+        submoduloActual.preguntas.forEach((p, idx) => { if (respuestas[idx] === p.correcta) correctas++; });
+        const porcentaje = Math.round((correctas / submoduloActual.preguntas.length) * 100);
+        const aprobado = porcentaje >= 70;
+        if (aprobado) {
+            const sub = moduloActual.submódulos.find(s => s.id === submoduloActual.subId);
+            if (sub && !sub.completado) { sub.completado = true; sub.puntaje = porcentaje; guardarProgreso(); renderSubmodulos(); }
+        }
+        document.getElementById('quizQuestion').innerHTML = `
+            <div class="result-badge">
+                <i class="fas ${aprobado ? 'fa-trophy' : 'fa-book'}" style="font-size: 64px; color: ${aprobado ? '#ffd778' : '#64748b'};"></i>
+                <h3>${aprobado ? '¡Felicidades!' : 'Sigue practicando'}</h3>
+                <p style="font-size: 32px; font-weight: 800;">${porcentaje}%</p>
+                <p>${correctas}/${submoduloActual.preguntas.length} respuestas correctas</p>
+                ${!aprobado ? '<p style="color: #ffd778;">Necesitas 70% para aprobar</p>' : '<p style="color: #22c55e;">✓ Submódulo completado</p>'}
+            </div>
+        `;
+        document.getElementById('quizFooter').innerHTML = `<button class="btn-primary" onclick="cerrarQuiz()">Continuar</button>`;
+    }
+    
+    function cerrarQuiz() { document.getElementById('quizModal').classList.remove('open'); }
+    function volverAModulos() { document.getElementById('submodulosSection').classList.add('hidden'); document.getElementById('modulosSection').classList.remove('hidden'); renderModulos(); }
+    
+    // Calculadora
+    function calcularLiquidacion() {
+        const salario = parseFloat(document.getElementById('salario').value);
+        let anios = parseFloat(document.getElementById('anios').value);
+        const meses = parseFloat(document.getElementById('mesesActual').value);
+        if (isNaN(salario) || salario <= 0) { alert("Ingresa salario válido"); return; }
+        if (isNaN(anios)) anios = 0;
+        const indemnizacion = Math.min(anios, 10) * salario;
+        const aguinaldo = (salario / 12) * meses;
+        const bono14 = (salario / 12) * meses;
+        const vacaciones = (salario / 30) * 15 * anios;
+        const total = indemnizacion + aguinaldo + bono14 + vacaciones;
+        document.getElementById('indemnizacion').innerHTML = `Q.${indemnizacion.toLocaleString()}`;
+        document.getElementById('aguinaldo').innerHTML = `Q.${aguinaldo.toLocaleString()}`;
+        document.getElementById('bono14').innerHTML = `Q.${bono14.toLocaleString()}`;
+        document.getElementById('vacaciones').innerHTML = `Q.${vacaciones.toLocaleString()}`;
+        document.getElementById('totalLiquidacion').innerHTML = `Q.${total.toLocaleString()}`;
+        document.getElementById('resultadoLiquidacion').classList.remove('hidden');
+    }
+    
+    // Navegación principal
+    function switchMainTab(tab) {
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById('modulosSection').classList.add('hidden');
+        document.getElementById('submodulosSection').classList.add('hidden');
+        document.getElementById('bibliotecaSection').classList.add('hidden');
+        document.getElementById('calculadoraSection').classList.add('hidden');
+        if (tab === 'modulos') { document.getElementById('modulosSection').classList.remove('hidden'); }
+        else if (tab === 'biblioteca') { document.getElementById('bibliotecaSection').classList.remove('hidden'); buscarEnBiblioteca(); }
+        else if (tab === 'calculadora') { document.getElementById('calculadoraSection').classList.remove('hidden'); }
+    }
+    
+    // Inicialización
+    inicializarProgreso();
+    renderModulos();
+    renderFiltrosBiblioteca();
+    renderArticulosPopulares();
+    buscarEnBiblioteca();
+</script>
+</body>
+</html>
